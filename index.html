@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <script src="./js/game.js" defer></script>
+    <title>Cookie Clicker</title>
+  </head>
+  <body>
+    <div id="container">
+      <div id="game">
+        <div id="cookie">
+          <div id="title">
+            <div id="score">100 Cookies</div>
+            <div id="score-ps">50cps</div>
+          </div>
+          <div id="bigCookie-wrapper">
+            <div id="bigCookie"></div>
+          </div>
+        </div>
+        <div id="upgrades-wrapper">
+          <ol id="upgrades-list"></ol>
+        </div>
+      </div>
+    </div>
+    <template id="tpl-upgrades">
+      <li class="upgrade-item">
+        <p class="upgrade-name"></p>
+        <p class="upgrade-price"></p>
+      </li>
+    </template>
+  </body>
+</html>
