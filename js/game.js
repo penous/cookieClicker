@@ -103,6 +103,7 @@ Game.startGame = function () {
       Game.cookies += Game.cookiesPs;
       updateCookies();
       bakeFreeCookies();
+      upgradeAvailability();
     }, 1000);
   };
   bakeFreeCookies();
@@ -119,6 +120,19 @@ Game.startGame = function () {
     product.price = product.defaultPrice * (temp.amount + 1);
     document.querySelector(`li[id='${id}'] p.upgrade-price`).innerHTML =
       product.price;
+  };
+
+  // Check if upgrades are buyable
+  const upgradeAvailability = () => {
+    const listItems = document.querySelectorAll('.upgrade-item');
+    listItems.forEach((li) => {
+      const temp = Game.products.find((el) => +li.id === el.id);
+      if (temp.price > Game.cookies) {
+        li.classList.add('no-events');
+      } else {
+        li.classList.remove('no-events');
+      }
+    });
   };
 };
 

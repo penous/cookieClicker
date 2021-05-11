@@ -111,6 +111,11 @@
   z-index: 0;
 }
 
+.no-events {
+  pointer-events: none;
+  color: rgb(52, 52, 52);
+}
+
 #upgrades-list li p {
   z-index: 1;
   padding: 0 20px;
