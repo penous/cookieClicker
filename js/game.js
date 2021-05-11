@@ -63,6 +63,7 @@ Game.startGame = function () {
       };
       Game.upgrades.push(upgrade);
     }
+    Game.cookies -= item.price;
   };
 
   // Click the cookie
@@ -81,6 +82,7 @@ Game.startGame = function () {
     listItem.addEventListener('click', (e) => {
       Game.buyUpgrade(e.currentTarget.id);
       updateCps();
+      updateCookies();
       updateShopPrice(e.currentTarget.id);
     });
   });
