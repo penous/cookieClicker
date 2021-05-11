@@ -46,14 +46,11 @@ Game.startGame = function () {
   // Update stats function
   function updateCookies() {
     score.innerHTML = `${Game.cookies} Cookies`;
-    scorePs.innerHTML = `${Game.cookiesPs} cookies per second`;
   }
 
   // Buy upgrade function
-  function buyUpgrade(id) {
-    console.log(id);
+  Game.buyUpgrade = function (id) {
     const item = Game.products.find((product) => +id === product.id);
-    console.log(item);
     if (Game.upgrades.some((e) => e.id === item.id)) {
       const tempItem = Game.upgrades.find((e) => e.id === item.id);
       tempItem.amount++;
@@ -66,8 +63,7 @@ Game.startGame = function () {
       };
       Game.upgrades.push(upgrade);
     }
-    console.log(Game.upgrades);
-  }
+  };
 
   // Click the cookie
   cookie.addEventListener('click', () => {
@@ -82,10 +78,48 @@ Game.startGame = function () {
 
   // Click shop items
   document.querySelectorAll('.upgrade-item').forEach((listItem) => {
-    listItem.addEventListener('click', (e) => buyUpgrade(e.currentTarget.id));
+    listItem.addEventListener('click', (e) => {
+      Game.buyUpgrade(e.currentTarget.id);
+      updateCps();
+      updateShopPrice(e.currentTarget.id);
+    });
   });
 
   // Autoclick functionality from products
+  function updateCps() {
+    if (Game.upgrades.length === 0) return;
+
+    Game.cookiesPs = Game.upgrades.reduce((acc, upgrade) => {
+      return acc + upgrade.power * upgrade.amount;
+    }, 0);
+
+    scorePs.innerHTML = `${Game.cookiesPs} cookies per second`;
+  }
+
+  // Increase cookies by cookies per second
+  const bakeFreeCookies = () => {
+    // if (Game.cookiesPs === 0) return;
+    setTimeout(() => {
+      Game.cookies += Game.cookiesPs;
+      updateCookies();
+      bakeFreeCookies();
+    }, 1000);
+  };
+  bakeFreeCookies();
+
+  // Increase price of shop items
+  const updateShopPrice = (id) => {
+    const productIndex = Game.products.findIndex(
+      (element) => element.id === +id
+    );
+    console.log(productIndex);
+    const product = Game.products[productIndex];
+    const temp = Game.upgrades.find((el) => product.id === el.id);
+
+    product.price = product.defaultPrice * (temp.amount + 1);
+    document.querySelector(`li[id='${id}'] p.upgrade-price`).innerHTML =
+      product.price;
+  };
 };
 
 Game.startGame();
