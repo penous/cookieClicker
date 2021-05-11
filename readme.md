@@ -13,3 +13,7 @@ Click like you've never clicker before.
 - [ ] Get stronger click
 - [x] Add upgrades
 - [x] Autoclicker logic some way??
+
+## Play!
+
+[Cookie Clicker Remastered](https://penous.github.io/cookieClicker/)
