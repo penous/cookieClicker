@@ -13,13 +13,19 @@ Game.startGame = function () {
   Game.cookies = 0;
   Game.cookiesPs = 0;
   Game.products = [
-    { id: 0, name: 'Player Power', power: 1, price: 50 },
-    { id: 1, name: 'Cursor', power: 1, price: 50 },
-    { id: 2, name: 'Granny', power: 5, price: 120 },
-    { id: 3, name: 'BeCode Student', power: 15, price: 400 },
-    { id: 4, name: 'Yarrut', power: 20, price: 650 },
-    { id: 5, name: 'Jonas', power: 30, price: 800 },
-    { id: 6, name: 'Ultimate Sicco', power: 999, price: 66666 },
+    { id: 0, name: 'Player Power', power: 1, defaultPrice: 50, price: 50 },
+    { id: 1, name: 'Cursor', power: 1, defaultPrice: 50, price: 50 },
+    { id: 2, name: 'Granny', power: 5, defaultPrice: 120, price: 120 },
+    { id: 3, name: 'BeCode Student', power: 15, defaultPrice: 400, price: 400 },
+    { id: 4, name: 'Yarrut', power: 20, defaultPrice: 650, price: 650 },
+    { id: 5, name: 'Jonas', power: 30, defaultPrice: 800, price: 800 },
+    {
+      id: 6,
+      name: 'Ultimate Sicco',
+      power: 999,
+      defaultPrice: 66666,
+      price: 66666,
+    },
   ];
   Game.upgrades = [];
   Game.player = { power: 1 };
