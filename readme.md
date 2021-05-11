@@ -9,7 +9,7 @@ Click like you've never clicker before.
 
 ### The project
 
-- [ ] Make clickable cookie
+- [x] Make clickable cookie
 - [ ] Get stronger click
-- [ ] Add upgrades
-- [ ] Autoclicker logic some way??
+- [x] Add upgrades
+- [x] Autoclicker logic some way??
