@@ -51,14 +51,23 @@ Game.startGame = function () {
     score.innerHTML = `${Game.cookies} Cookies`;
   }
 
+  function doubleDisplay(flag) {
+    let display = '';
+    if (flag) {
+      display = 'block';
+    } else if (!flag) {
+      display = 'none';
+    }
+    double.forEach((double) => {
+      double.style.display = display;
+    });
+  }
+
   // Power up
   function powerUp() {
-    double.forEach((double) => {
-      double.style.display = 'block';
-    });
+    doubleDisplay(true);
     let timer = 10;
-    // Game.cookiesPs *= 2;
-    Game.cookiesPs = Game.cookiesPs * 2;
+    Game.cookiesPs *= 2;
     Game.player.power *= 2;
     cookieBG.classList.add('power-up');
     const powerUp = setInterval(() => {
@@ -68,9 +77,7 @@ Game.startGame = function () {
         Game.player.power /= 2;
         updateCps();
         cookieBG.classList.remove('power-up');
-        double.forEach((double) => {
-          double.style.display = 'none';
-        });
+        doubleDisplay(false);
         clearInterval(powerUp);
       }
     }, 1000);
