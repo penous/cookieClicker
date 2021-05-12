@@ -12,7 +12,7 @@ Game.startGame = function () {
   const template = document.getElementById('tpl-upgrades');
 
   // Generate game stats and stuff
-  Game.cookies = 1000;
+  Game.cookies = 0;
   Game.cookiesPs = 0;
   Game.products = [
     { id: 0, name: 'Power Up', power: 0, defaultPrice: 50, price: 50 },
@@ -55,17 +55,14 @@ Game.startGame = function () {
     let timer = 10;
     // Game.cookiesPs *= 2;
     Game.cookiesPs = Game.cookiesPs * 2;
-    console.log('1: ' + Game.playerPower());
     Game.player.power *= 2;
     cookieBG.classList.add('power-up');
     const powerUp = setInterval(() => {
       --timer;
-      console.log('2: ' + Game.playerPower());
       if (timer === 0) {
         Game.upgrades = Game.upgrades.filter((upgrade) => upgrade.id != 0);
         Game.player.power /= 2;
         updateCps();
-        console.log('3: ' + Game.playerPower());
         cookieBG.classList.remove('power-up');
         clearInterval(powerUp);
       }
