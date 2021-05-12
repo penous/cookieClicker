@@ -80,6 +80,7 @@
   text-align: center;
   color: azure;
   background: rgba(0, 0, 0, 0.427);
+  position: relative;
 }
 
 #score {
@@ -88,6 +89,23 @@
 
 #score-ps {
   font-size: 1.3rem;
+}
+
+.double:first-child {
+  position: absolute;
+  left: 150px;
+  top: 10px;
+  font-size: 4rem;
+  color: rgb(255, 200, 19);
+  display: none;
+}
+.double:last-child {
+  position: absolute;
+  left: 550px;
+  top: 10px;
+  font-size: 4rem;
+  color: rgb(255, 200, 19);
+  display: none;
 }
 
 #upgrades-wrapper {

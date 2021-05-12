@@ -10,6 +10,7 @@ Game.startGame = function () {
   const cookieImg = document.getElementById('bigCookie');
   const upgradeList = document.getElementById('upgrades-list');
   const template = document.getElementById('tpl-upgrades');
+  const double = document.querySelectorAll('.double');
 
   // Generate game stats and stuff
   Game.cookies = 0;
@@ -52,6 +53,9 @@ Game.startGame = function () {
 
   // Power up
   function powerUp() {
+    double.forEach((double) => {
+      double.style.display = 'block';
+    });
     let timer = 10;
     // Game.cookiesPs *= 2;
     Game.cookiesPs = Game.cookiesPs * 2;
@@ -64,6 +68,9 @@ Game.startGame = function () {
         Game.player.power /= 2;
         updateCps();
         cookieBG.classList.remove('power-up');
+        double.forEach((double) => {
+          double.style.display = 'none';
+        });
         clearInterval(powerUp);
       }
     }, 1000);
