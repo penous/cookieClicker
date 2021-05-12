@@ -63,18 +63,23 @@ Game.startGame = function () {
     });
   }
 
+  function playerPowerUp(flag) {
+    if (flag === 'on') Game.player.power *= 2;
+    if (flag === 'off') Game.player.power /= 2;
+  }
+
   // Power up
   function powerUp() {
     doubleDisplay(true);
     let timer = 10;
     Game.cookiesPs *= 2;
-    Game.player.power *= 2;
+    playerPowerUp('on');
     cookieBG.classList.add('power-up');
     const powerUp = setInterval(() => {
       --timer;
       if (timer === 0) {
         Game.upgrades = Game.upgrades.filter((upgrade) => upgrade.id != 0);
-        Game.player.power /= 2;
+        playerPowerUp('off');
         updateCps();
         cookieBG.classList.remove('power-up');
         doubleDisplay(false);
