@@ -6,15 +6,16 @@ Game.startGame = function () {
   const score = document.getElementById('score');
   const scorePs = document.getElementById('score-ps');
   const cookie = document.getElementById('bigCookie-click');
+  const cookieBG = document.getElementById('cookie');
   const cookieImg = document.getElementById('bigCookie');
   const upgradeList = document.getElementById('upgrades-list');
   const template = document.getElementById('tpl-upgrades');
 
   // Generate game stats and stuff
-  Game.cookies = 0;
+  Game.cookies = 1000;
   Game.cookiesPs = 0;
   Game.products = [
-    { id: 0, name: 'Player Power', power: 1, defaultPrice: 50, price: 50 },
+    { id: 0, name: 'Power Up', power: 0, defaultPrice: 50, price: 50 },
     { id: 1, name: 'Cursor', power: 1, defaultPrice: 50, price: 50 },
     { id: 2, name: 'Granny', power: 5, defaultPrice: 120, price: 120 },
     { id: 3, name: 'BeCode Student', power: 15, defaultPrice: 400, price: 400 },
@@ -31,9 +32,9 @@ Game.startGame = function () {
   Game.upgrades = [];
   Game.player = { power: 1 };
 
-  function getPlayerPower() {
+  Game.playerPower = function () {
     return Game.player.power;
-  }
+  };
 
   // Fill in store
   for (let [index, product] of Game.products.entries()) {
@@ -47,6 +48,28 @@ Game.startGame = function () {
   // Update stats function
   function updateCookies() {
     score.innerHTML = `${Game.cookies} Cookies`;
+  }
+
+  // Power up
+  function powerUp() {
+    let timer = 10;
+    // Game.cookiesPs *= 2;
+    Game.cookiesPs = Game.cookiesPs * 2;
+    console.log('1: ' + Game.playerPower());
+    Game.player.power *= 2;
+    cookieBG.classList.add('power-up');
+    const powerUp = setInterval(() => {
+      --timer;
+      console.log('2: ' + Game.playerPower());
+      if (timer === 0) {
+        Game.upgrades = Game.upgrades.filter((upgrade) => upgrade.id != 0);
+        Game.player.power /= 2;
+        updateCps();
+        console.log('3: ' + Game.playerPower());
+        cookieBG.classList.remove('power-up');
+        clearInterval(powerUp);
+      }
+    }, 1000);
   }
 
   // Buy upgrade function
@@ -65,6 +88,7 @@ Game.startGame = function () {
       Game.upgrades.push(upgrade);
       ultimateSicCheck(upgrade);
     }
+    if (item.id === 0) powerUp();
     Game.cookies -= item.price;
   };
 
@@ -75,7 +99,7 @@ Game.startGame = function () {
       iterations: 1,
     });
 
-    Game.cookies++;
+    Game.cookies += Game.playerPower();
     updateCookies();
   });
 
@@ -97,6 +121,10 @@ Game.startGame = function () {
       return acc + upgrade.power * upgrade.amount;
     }, 0);
 
+    if (Game.upgrades.some((upgrade) => upgrade.id === 0)) {
+      Game.cookiesPs *= 2;
+    }
+
     scorePs.innerHTML = `${Game.cookiesPs} cookies per second`;
   }
 
@@ -116,7 +144,6 @@ Game.startGame = function () {
     const productIndex = Game.products.findIndex(
       (element) => element.id === +id
     );
-    console.log(productIndex);
     const product = Game.products[productIndex];
     const temp = Game.upgrades.find((el) => product.id === el.id);
 
