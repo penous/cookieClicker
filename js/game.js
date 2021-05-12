@@ -189,7 +189,7 @@ Game.startGame = function () {
   function ultimateSicCheck(upgrade) {
     if (upgrade.id === 6) {
       cookieImg.classList.add('secret');
-      cookieImg.style.backgroundImage = 'url(../images/sic.png)';
+      cookieImg.style.backgroundImage = 'url(./images/sic.png)';
     }
   }
 };
