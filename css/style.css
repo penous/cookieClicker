@@ -93,7 +93,7 @@
 
 .double:first-child {
   position: absolute;
-  left: 150px;
+  left: 30%;
   top: 10px;
   font-size: 4rem;
   color: rgb(255, 200, 19);
@@ -101,7 +101,7 @@
 }
 .double:last-child {
   position: absolute;
-  left: 550px;
+  left: 65%;
   top: 10px;
   font-size: 4rem;
   color: rgb(255, 200, 19);
