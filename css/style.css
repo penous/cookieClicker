@@ -60,6 +60,13 @@
   animation: rotate 100s linear infinite;
 }
 
+.secret {
+  background-size: cover;
+  height: 250px;
+  width: 250px;
+  border-radius: 50%;
+}
+
 #title {
   font-family: 'Itim', cursive;
   margin-top: 10%;

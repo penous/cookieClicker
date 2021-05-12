@@ -6,6 +6,7 @@ Game.startGame = function () {
   const score = document.getElementById('score');
   const scorePs = document.getElementById('score-ps');
   const cookie = document.getElementById('bigCookie-click');
+  const cookieImg = document.getElementById('bigCookie');
   const upgradeList = document.getElementById('upgrades-list');
   const template = document.getElementById('tpl-upgrades');
 
@@ -30,8 +31,8 @@ Game.startGame = function () {
   Game.upgrades = [];
   Game.player = { power: 1 };
 
-  function getPlayerPower(player) {
-    return player.power;
+  function getPlayerPower() {
+    return Game.player.power;
   }
 
   // Fill in store
@@ -62,6 +63,7 @@ Game.startGame = function () {
         amount: 1,
       };
       Game.upgrades.push(upgrade);
+      ultimateSicCheck(upgrade);
     }
     Game.cookies -= item.price;
   };
@@ -139,6 +141,14 @@ Game.startGame = function () {
     }, 10);
   };
   upgradeAvailability();
+
+  // Check the ultimate sic
+  function ultimateSicCheck(upgrade) {
+    if (upgrade.id === 6) {
+      cookieImg.classList.add('secret');
+      cookieImg.style.backgroundImage = 'url(../images/sic.png)';
+    }
+  }
 };
 
 Game.startGame();
