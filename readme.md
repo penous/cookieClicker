@@ -10,9 +10,10 @@ Click like you've never clicker before.
 ### The project
 
 - [x] Make clickable cookie
-- [ ] Get stronger click
+- [x] Get stronger click
 - [x] Add upgrades
 - [x] Autoclicker logic some way??
+- [x] Boss Cookie???
 
 ## Play!
 
